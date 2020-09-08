@@ -14,7 +14,7 @@
             sm="8"
             md="4"
           >
-            <Shortener/>
+            <Shortener token=""/>
           </v-col>
         </v-row>
       </v-container>
