@@ -12,6 +12,7 @@
         <span>Source</span>
       </v-tooltip>
     </v-toolbar>
+    <!--
     <v-card-text>
       <v-form>
         <v-text-field label="Link" name="link" prepend-icon="mdi-link" type="text" v-model="link"></v-text-field>
@@ -26,6 +27,7 @@
         ></v-text-field>
       </v-form>
     </v-card-text>
+    -->
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn color="primary" @click="shorten()">Shorten</v-btn>
