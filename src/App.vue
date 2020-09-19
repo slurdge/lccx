@@ -29,6 +29,10 @@ export default {
 </script>
 
 <style>
+html{
+  overflow-y: hidden;
+}
+
 body {
   background-color: #000022;
   background-size: auto;
