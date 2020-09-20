@@ -9,13 +9,13 @@ const {
 
 module.exports = (req, res) => {
 
-    let { url = "https://www.google.com", note = "" } = req.query;
+    let { url = "", custom = "", note = "" } = req.body;
 
     if (!/^https?:\/\//i.test(url)) {
         url = 'https://' + url;
     }
 
-    var data = JSON.stringify({ "destination": url, "domain": "00000000-0000-0000-0000-000000000000", "note": note });
+    var data = JSON.stringify({ "destination": url, "domain": "00000000-0000-0000-0000-000000000000", "note": note, "custom_path": custom });
 
     var config = {
         method: 'post',
@@ -29,9 +29,12 @@ module.exports = (req, res) => {
 
     axios.request(config)
         .then(function(response) {
-            res.send(response.data['shorturl']);
+            res.json({
+                success: true,
+                shorturl: response.data.shorturl
+            });
         })
         .catch(function(error) {
-            res.send(error);
+            res.json({ success: false, message: error.response.data.message });
         });
 };
