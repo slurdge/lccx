@@ -40,12 +40,12 @@
             </v-col>
             <v-col>
               <v-scroll-x-reverse-transition>
-                <v-text-field label="Custom URL" v-model="custom" :rules="customURLRules" v-if="advanced"></v-text-field>
+                <v-text-field label="Custom URL" v-model="custom" :rules="customURLRules" v-show="advanced"></v-text-field>
               </v-scroll-x-reverse-transition>
             </v-col>
             <v-col>
               <v-scroll-x-reverse-transition>
-                <v-text-field label="Note" v-model="note" v-if="advanced"></v-text-field>
+                <v-text-field label="Note" v-model="note" v-show="advanced"></v-text-field>
               </v-scroll-x-reverse-transition>
             </v-col>
           </v-row>
