@@ -22,11 +22,12 @@
             <v-text-field
               id="shortlink"
               label="ShortLink"
-              prepend-icon="mdi-link"
+              :prepend-icon="shortlink ? 'mdi-qrcode-scan': 'mdi-link'"
               type="text"
               v-model="shortlink"
-              append-icon="mdi-content-copy"
+              :append-icon="shortlink ? 'mdi-content-copy': ''"
               @click:append="copylink"
+              @click:prepend="dialog=true"
               v-bind="attrs"
               readonly
             ></v-text-field>
@@ -54,7 +55,7 @@
         
       </v-card-text>
     <v-card-actions>
-      <v-alert
+       <v-alert
         class="my-auto"
         dense
         transition="fade-transition"
@@ -64,13 +65,44 @@
       <v-spacer></v-spacer>
       <v-btn :disabled="!valid" color="primary" @click="shorten()" large>Shorten</v-btn>
     </v-card-actions>
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">QR Code</v-card-title>
+
+        <v-card-text>
+          Here is a QR Code that you can scan or copy
+       </v-card-text>
+       <v-container fluid>
+         <v-row justify="center">
+         <qrcode-vue :value="shortlink" size="150" level="M"></qrcode-vue>
+         </v-row>
+       </v-container>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            text
+            @click="dialog = false"
+          >
+            Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
+import QrcodeVue from 'qrcode.vue'
 import isURL from "validator/es/lib/isURL";
 
 export default {
+  components: {
+      QrcodeVue,
+    },
   props: {
     token: String,
   },
@@ -86,6 +118,7 @@ export default {
       },
       advanced: false,
       working: false,
+      dialog: false,
       link: "",
       note: "",
       custom: "",
