@@ -12,7 +12,7 @@
     "core-js": "^3.6.5",
     "merge": "2.1.1",
     "qrcode.vue": "^1.7.0",
-    "validator": "^13.1.17",
+    "validator": "^13.7.0",
     "vercel": "^22.0.1",
     "vue": "^2.6.11",
     "vuetify": "^2.2.11"
