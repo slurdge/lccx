@@ -23,7 +23,7 @@ yarn serve
 If you want the serverless function,
 
 ```
-yarn run vercel --dev
+yarn run vercel dev
 ```
 
 ### Compiles and minifies for production
