@@ -54,7 +54,7 @@
                   label="Custom URL"
                   v-model="custom"
                   :rules="customURLRules"
-                  v-show="advanced"
+                  v-if="advanced"
                 ></v-text-field>
               </v-scroll-x-reverse-transition>
             </v-col>
@@ -76,14 +76,12 @@
         class="my-auto"
         dense
         transition="fade-transition"
-        :value="alert.show"
+        :model-value="alert.show"
         :type="alert.type"
         >{{ alert.message }}</v-alert
       >
       <v-spacer></v-spacer>
-      <v-btn :disabled="!valid" color="primary" @click="shorten()" large
-        >Shorten</v-btn
-      >
+      <v-btn :disabled="!valid" color="primary" @click="shorten()" large>Shorten</v-btn>
     </v-card-actions>
     <v-dialog v-model="dialog" max-width="290">
       <v-card flat>
@@ -96,7 +94,7 @@
         </v-toolbar>
         <v-container fluid>
           <v-row justify="center">
-            <qrcode-vue :value="shortlink" size="150" level="M"></qrcode-vue>
+            <qrcode-vue :model-value="shortlink" size="150" level="M"></qrcode-vue>
           </v-row>
         </v-container>
       </v-card>
@@ -109,6 +107,7 @@ import QrcodeVue from "qrcode.vue";
 import isURL from "validator/es/lib/isURL";
 
 export default {
+  name: "ShortenerDialog",
   components: {
     QrcodeVue,
   },
@@ -135,7 +134,7 @@ export default {
       valid: true,
       shortRules: [
         (v) => !!v || "Link is required",
-        (v) =>
+        (v) => 
           isURL(v, {
             protocols: ["http", "https"],
             require_tld: false,
@@ -150,7 +149,7 @@ export default {
             disallow_auth: false,
           }) || "A valid URL is required",
       ],
-      customURLRules: [(v) => /^\S*$/gi.test(v) || "No whitespace is allowed"],
+      customURLRules: [(v) => ( /^\S*$/gi.test(v) ) || "No whitespace is allowed"],
     };
   },
   methods: {

@@ -1,23 +1,27 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
-import colors from 'vuetify/lib/util/colors';
+// Styles
+import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/styles'
+import colors from "vuetify/lib/util/colors";
 
-Vue.use(Vuetify);
+// Vuetify
+import { createVuetify } from 'vuetify'
 
-export default new Vuetify({
-
+export default createVuetify(
+  // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+  {
     theme: {
-        dark: true,
-        themes: {
-            light: {
-                primary: colors.purple,
-                secondary: colors.grey.darken1,
-                accent: colors.shades.black,
-                error: colors.red.accent3,
-            },
-            dark: {
-                primary: colors.lightBlue,
-            },
+      dark: true,
+      themes: {
+        light: {
+          primary: colors.purple,
+          secondary: colors.grey.darken1,
+          accent: colors.shades.black,
+          error: colors.red.accent3,
         },
+        dark: {
+          primary: colors.lightBlue,
+        },
+      },
     },
-});
+  }
+);

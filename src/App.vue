@@ -4,7 +4,7 @@
       <v-container class="mt-10" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="4">
-            <Shortener token />
+            <ShortenerDialog token />
           </v-col>
         </v-row>
       </v-container>
@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import Shortener from "./components/Shortener";
+import ShortenerDialog from "./components/Shortener";
 
 export default {
   name: "App",
 
   components: {
-    Shortener,
+    ShortenerDialog,
   },
 
   data: () => ({
