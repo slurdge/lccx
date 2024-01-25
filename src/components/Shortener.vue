@@ -1,7 +1,7 @@
 <template>
   <v-card flat>
     <v-toolbar color="primary" dark flat>
-      <v-toolbar-title>Shorten link with lc.cx</v-toolbar-title>
+      <v-toolbar-title>Shorten link with <a href="https://lc.cx/">lc.cx</a></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-progress-circular
         indeterminate
