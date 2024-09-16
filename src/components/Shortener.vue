@@ -10,7 +10,7 @@
       ></v-progress-circular>
     </v-toolbar>
     <v-card-text>
-      <v-form v-model="valid" @keyup.native.enter="shorten()">
+      <v-form v-model="valid" @keyup.enter="shorten()">
         <v-text-field
           required
           :rules="shortRules"

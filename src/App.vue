@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ShortenerDialog from "./components/Shortener";
+import ShortenerDialog from "./components/Shortener.vue";
 
 export default {
   name: "App",
