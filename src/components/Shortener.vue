@@ -1,7 +1,9 @@
 <template>
   <v-card flat>
     <v-toolbar color="primary" dark flat>
-      <v-toolbar-title>Shorten link with <a href="https://lc.cx/">lc.cx</a></v-toolbar-title>
+      <v-toolbar-title
+        >Shorten link with <a href="https://lc.cx/">lc.cx</a></v-toolbar-title
+      >
       <v-spacer></v-spacer>
       <v-progress-circular
         indeterminate
@@ -81,7 +83,9 @@
         >{{ alert.message }}</v-alert
       >
       <v-spacer></v-spacer>
-      <v-btn :disabled="!valid" color="primary" @click="shorten()" large>Shorten</v-btn>
+      <v-btn :disabled="!valid" color="primary" @click="shorten()" large
+        >Shorten</v-btn
+      >
     </v-card-actions>
     <v-dialog v-model="dialog" max-width="290">
       <v-card flat>
@@ -94,7 +98,11 @@
         </v-toolbar>
         <v-container fluid>
           <v-row justify="center">
-            <qrcode-vue :model-value="shortlink" size="150" level="M"></qrcode-vue>
+            <qrcode-vue
+              :model-value="shortlink"
+              size="150"
+              level="M"
+            ></qrcode-vue>
           </v-row>
         </v-container>
       </v-card>
@@ -134,7 +142,7 @@ export default {
       valid: true,
       shortRules: [
         (v) => !!v || "Link is required",
-        (v) => 
+        (v) =>
           isURL(v, {
             protocols: ["http", "https"],
             require_tld: false,
@@ -149,7 +157,7 @@ export default {
             disallow_auth: false,
           }) || "A valid URL is required",
       ],
-      customURLRules: [(v) => ( /^\S*$/gi.test(v) ) || "No whitespace is allowed"],
+      customURLRules: [(v) => /^\S*$/gi.test(v) || "No whitespace is allowed"],
     };
   },
   methods: {
@@ -158,19 +166,25 @@ export default {
         return;
       }
       this.working = true;
-      this.axios
-        .post("/api/shorten", {
+      fetch("/api/shorten", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           url: this.link,
           custom: this.custom,
           note: this.note,
-        })
+        }),
+      })
+        .then((response) => response.json())
         .then((response) => {
           this.working = false;
-          if (response.data.success) {
-            this.shortlink = response.data.shorturl;
+          if (response.success) {
+            this.shortlink = response.shorturl;
             this.notify("Done");
           } else {
-            this.notify("Error: " + response.data.message, "error");
+            this.notify("Error: " + response.message, "error");
           }
         });
     },
@@ -193,7 +207,7 @@ export default {
         },
         function () {
           /* clipboard write failed */
-        }
+        },
       );
     },
   },
