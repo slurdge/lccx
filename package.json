@@ -29,7 +29,7 @@
     "eslint-plugin-vue": "^9.27.0",
     "sass": "1.77.6",
     "unplugin-fonts": "^1.1.1",
-    "vite": "^5.3.3",
+    "vite": "^6.4.2",
     "vite-plugin-vuetify": "^2.0.3",
     "vue-router": "^4.4.0"
   },
